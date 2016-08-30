@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5548597D0A9368D1BDDEF6BB /* Pods_TeachBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85011804D64BEFEC2796E4D9 /* Pods_TeachBot.framework */; };
 		961F61D71D760A64004BE6C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F61D61D760A64004BE6C6 /* AppDelegate.swift */; };
 		961F61D91D760A64004BE6C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F61D81D760A64004BE6C6 /* MainViewController.swift */; };
 		961F61DC1D760A64004BE6C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DA1D760A64004BE6C6 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E96803C4DD50199471C8096 /* Pods-TeachBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachBot.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot.release.xcconfig"; sourceTree = "<group>"; };
+		85011804D64BEFEC2796E4D9 /* Pods_TeachBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeachBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961F61D31D760A64004BE6C6 /* TeachBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961F61D61D760A64004BE6C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961F61D81D760A64004BE6C6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		961F61DD1D760A64004BE6C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		961F61E01D760A64004BE6C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961F61E21D760A64004BE6C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6584B33E1C4C4C211102569 /* Pods-TeachBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachBot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5548597D0A9368D1BDDEF6BB /* Pods_TeachBot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D7D91E326CDF20AFB67696B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6584B33E1C4C4C211102569 /* Pods-TeachBot.debug.xcconfig */,
+				4E96803C4DD50199471C8096 /* Pods-TeachBot.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		961F61CA1D760A64004BE6C6 = {
 			isa = PBXGroup;
 			children = (
 				961F61D51D760A64004BE6C6 /* TeachBot */,
 				961F61D41D760A64004BE6C6 /* Products */,
+				4D7D91E326CDF20AFB67696B /* Pods */,
+				C2E214064E22F00A50BF0BD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = TeachBot;
 			sourceTree = "<group>";
 		};
+		C2E214064E22F00A50BF0BD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85011804D64BEFEC2796E4D9 /* Pods_TeachBot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 961F61E51D760A64004BE6C6 /* Build configuration list for PBXNativeTarget "TeachBot" */;
 			buildPhases = (
+				2BDF34003E5009855BA31539 /* 📦 Check Pods Manifest.lock */,
 				961F61CF1D760A64004BE6C6 /* Sources */,
 				961F61D01D760A64004BE6C6 /* Frameworks */,
 				961F61D11D760A64004BE6C6 /* Resources */,
+				9DCA8A27D9A38EBA5EF8FF66 /* 📦 Embed Pods Frameworks */,
+				2ED8AE9CDC88BC95AB7B9CFC /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BDF34003E5009855BA31539 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2ED8AE9CDC88BC95AB7B9CFC /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DCA8A27D9A38EBA5EF8FF66 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		961F61CF1D760A64004BE6C6 /* Sources */ = {
@@ -248,6 +323,7 @@
 		};
 		961F61E61D760A64004BE6C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6584B33E1C4C4C211102569 /* Pods-TeachBot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TeachBot/Info.plist;
@@ -259,6 +335,7 @@
 		};
 		961F61E71D760A64004BE6C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E96803C4DD50199471C8096 /* Pods-TeachBot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TeachBot/Info.plist;
@@ -287,6 +364,7 @@
 				961F61E71D760A64004BE6C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
