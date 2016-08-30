@@ -57,6 +57,9 @@
                                                 <constraint firstAttribute="height" constant="50" id="Jhh-pd-b3C"/>
                                             </constraints>
                                             <state key="normal" image="AddButton"/>
+                                            <connections>
+                                                <action selector="insertCodeBlockBelow:" destination="pM6-gv-DVr" eventType="touchUpInside" id="Ww9-xq-lXb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -73,6 +76,13 @@
                                         <constraint firstItem="YeY-Ms-cvo" firstAttribute="top" secondItem="cdq-S1-LUP" secondAttribute="bottom" id="kLy-ij-uM9"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="arrowView" destination="YeY-Ms-cvo" id="utG-Jv-wFF"/>
+                                    <outlet property="colorBackgroundView" destination="cdq-S1-LUP" id="rER-4G-Jk1"/>
+                                    <outlet property="iconView" destination="2zx-ZE-Q4V" id="Y5a-FK-3Bu"/>
+                                    <outlet property="insertButton" destination="eke-um-Doe" id="YcS-R6-xmd"/>
+                                    <outlet property="label" destination="sjo-hU-hGc" id="g8e-tS-thr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

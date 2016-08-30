@@ -9,7 +9,15 @@
 import UIKit
 
 class CodeBlockCell: UITableViewCell {
-
+    
+    @IBOutlet weak var insertButton: UIButton!
+    
+    @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var colorBackgroundView: UIView!
+    @IBOutlet weak var arrowView: UIImageView!
+    @IBOutlet weak var iconView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +29,7 @@ class CodeBlockCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func insertCodeBlockBelow(sender: UIButton) {
+        
+    }
 }
