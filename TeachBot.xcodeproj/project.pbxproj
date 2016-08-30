@@ -13,6 +13,7 @@
 		961F61DC1D760A64004BE6C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DA1D760A64004BE6C6 /* Main.storyboard */; };
 		961F61DE1D760A64004BE6C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DD1D760A64004BE6C6 /* Assets.xcassets */; };
 		961F61E11D760A64004BE6C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DF1D760A64004BE6C6 /* LaunchScreen.storyboard */; };
+		961F61E91D760E6C004BE6C6 /* CodeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		961F61DD1D760A64004BE6C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		961F61E01D760A64004BE6C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961F61E21D760A64004BE6C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockCell.swift; sourceTree = "<group>"; };
 		A6584B33E1C4C4C211102569 /* Pods-TeachBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachBot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 			children = (
 				961F61D61D760A64004BE6C6 /* AppDelegate.swift */,
 				961F61D81D760A64004BE6C6 /* MainViewController.swift */,
+				961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */,
 				961F61DA1D760A64004BE6C6 /* Main.storyboard */,
 				961F61DD1D760A64004BE6C6 /* Assets.xcassets */,
 				961F61DF1D760A64004BE6C6 /* LaunchScreen.storyboard */,
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961F61E91D760E6C004BE6C6 /* CodeBlockCell.swift in Sources */,
 				961F61D91D760A64004BE6C6 /* MainViewController.swift in Sources */,
 				961F61D71D760A64004BE6C6 /* AppDelegate.swift in Sources */,
 			);
