@@ -10,8 +10,6 @@ import UIKit
 
 class CodeBlockCell: UITableViewCell {
     
-    @IBOutlet weak var insertButton: UIButton!
-    
     @IBOutlet weak var label: UILabel!
     
     @IBOutlet weak var colorBackgroundView: UIView!
