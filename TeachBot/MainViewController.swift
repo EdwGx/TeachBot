@@ -9,9 +9,17 @@
 import UIKit
 
 class MainViewController: UITableViewController {
-
+    
+    var codeBlocks: [CodeBlock] = [CodeBlock]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        codeBlocks = [CodeBlock.Forward,
+                      CodeBlock.Wait(1.23),
+                      CodeBlock.TurnLeft,
+                      CodeBlock.Wait(2.3),
+                      CodeBlock.Stop]
         
         tableView.separatorStyle = .None
 
@@ -33,13 +41,15 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return codeBlocks.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("code", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("code", forIndexPath: indexPath) as! CodeBlockCell
         
         // Configure cell
+        cell.codeBlock = codeBlocks[indexPath.row]
+        
         return cell
     }
     
