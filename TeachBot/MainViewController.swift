@@ -40,7 +40,6 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("code", forIndexPath: indexPath)
         
         // Configure cell
-        print(cell.contentView.frame.height)
         return cell
     }
     
