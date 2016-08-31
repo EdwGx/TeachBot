@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qh6-MR-Dow">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="InR-Ac-mkf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="TiC-Y3-JCa">
+            <objects>
+                <navigationController id="InR-Ac-mkf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vyt-no-UEi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qh6-MR-Dow" kind="relationship" relationship="rootViewController" id="Xyi-IQ-n9t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zp1-kZ-T0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="434"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="Bd9-gJ-ngz">
             <objects>
@@ -16,7 +32,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="code" rowHeight="111" id="pM6-gv-DVr" customClass="CodeBlockCell" customModule="TeachBot" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="111"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="111"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pM6-gv-DVr" id="qce-cB-0EQ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="110"/>
@@ -80,14 +96,17 @@
                             <outlet property="delegate" destination="qh6-MR-Dow" id="jtl-kx-hdm"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="egI-Mf-dHm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="OLa-br-dWi"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Q3-Tg-7tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="328" y="459"/>
+            <point key="canvasLocation" x="388" y="443"/>
         </scene>
     </scenes>
     <resources>
-        <image name="GreenTriangle" width="80" height="50"/>
-        <image name="Timer" width="48" height="48"/>
+        <image name="GreenTriangle" width="60" height="20"/>
+        <image name="Timer" width="30" height="30"/>
     </resources>
 </document>
