@@ -24,6 +24,7 @@ class MainViewController: UITableViewController {
                       CodeBlock.Stop]
         
         tableView.separatorStyle = .None
+        tableView.allowsSelection = false
 
         tableView.estimatedRowHeight = 89.5
         tableView.rowHeight = UITableViewAutomaticDimension
