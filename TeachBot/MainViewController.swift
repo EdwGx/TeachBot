@@ -12,7 +12,13 @@ class MainViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        tableView.separatorStyle = .None
+
+        tableView.estimatedRowHeight = 89.5
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,7 +29,7 @@ class MainViewController: UITableViewController {
     // MARK: - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +40,7 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("code", forIndexPath: indexPath)
         
         // Configure cell
-        
+        print(cell.contentView.frame.height)
         return cell
     }
     
