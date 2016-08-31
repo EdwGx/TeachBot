@@ -42,20 +42,7 @@ class CodeBlockCell: UITableViewCell {
     }
     
     func configureLabel() {
-        switch codeBlock! {
-        case .Stop:
-            label.text = "Stop"
-        case .Forward:
-            label.text = "Forward"
-        case .Backward:
-            label.text = "Backward"
-        case .TurnLeft:
-            label.text = "Turn Left"
-        case .TurnRight:
-            label.text = "Turn Right"
-        case.Wait(let interval):
-            label.text = NSString(format: "Wait %.1f s", interval) as String
-        }
+        label.text = codeBlock?.description
     }
     
     func configureIcon() {
