@@ -90,13 +90,13 @@ class CodeBlockCell: UITableViewCell {
             imageName = "GreenTriangle"
         case .TurnLeft, .TurnRight:
             colorBackgroundView.backgroundColor = UIColor(red: 0.102, green: 0.737, blue: 0.612, alpha: 1.0)
-            imageName = "GreenTriangle"
+            imageName = "TurquoiseTriangle"
         case .Stop:
             colorBackgroundView.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1.0)
-            imageName = "GreenTriangle"
+            imageName = "RedTriangle"
         case .Wait(_):
             colorBackgroundView.backgroundColor = UIColor(red: 0.945, green: 0.769, blue: 0.059, alpha: 1.0)
-            imageName = "GreenTriangle"
+            imageName = "YellowTriangle"
         }
         
         arrowView.image = UIImage(named: imageName)
