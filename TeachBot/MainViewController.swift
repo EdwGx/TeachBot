@@ -60,10 +60,22 @@ class MainViewController: UITableViewController {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let insertAction = UITableViewRowAction(style: .Normal, title: "↓ Insert") { (_, _) in
+            NSLog("Insert")
         }
+        
+        let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") { [unowned self] (_, path) in
+            self.codeBlocks.removeAtIndex(path.row)
+            tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Fade)
+        }
+        
+        return [deleteAction, insertAction]
+    }
+    
+    @IBAction func runCode(sender: UIButton) {
+        
     }
 
 }

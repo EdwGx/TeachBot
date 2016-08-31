@@ -97,7 +97,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="egI-Mf-dHm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="OLa-br-dWi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="OLa-br-dWi">
+                            <connections>
+                                <action selector="runCode:" destination="qh6-MR-Dow" id="rqX-vx-7OK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Q3-Tg-7tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
