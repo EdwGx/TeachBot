@@ -8,7 +8,10 @@
 
 import Foundation
 
-enum CodeBlock {
+enum CodeBlock: CustomStringConvertible {
+    // case Start
+    // case End
+    
     case Stop
     
     case Forward
@@ -18,4 +21,29 @@ enum CodeBlock {
     case TurnRight
     
     case Wait(Double)
+    
+    var description: String {
+        switch self {
+        case .Forward:
+            return "Forward"
+        case .Backward:
+            return "Backward"
+        case .TurnLeft:
+            return "Turn Left"
+        case .TurnRight:
+            return "Turn Right"
+        case .Stop:
+            return "Stop"
+        case .Wait(let interval):
+            if interval == 0.0 {
+                return "Wait"
+            } else {
+                return NSString(format: "Wait %.1f s", interval) as String
+            }
+        }
+    }
+    
+    static var allEditableCodeBlocks: [CodeBlock] {
+        return [.Forward, .Backward, .TurnLeft, .TurnRight, Wait(0.0), .Stop]
+    }
 }
