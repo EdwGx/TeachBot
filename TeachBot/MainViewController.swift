@@ -19,6 +19,8 @@ class MainViewController: UITableViewController {
                       CodeBlock.Wait(1.23),
                       CodeBlock.TurnLeft,
                       CodeBlock.Wait(2.3),
+                      CodeBlock.TurnRight,
+                      CodeBlock.Wait(1.0),
                       CodeBlock.Stop]
         
         tableView.separatorStyle = .None
