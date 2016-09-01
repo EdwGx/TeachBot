@@ -59,6 +59,10 @@ class CodeBlockCell: UITableViewCell {
             imageName = "TurnLeft"
         case .TurnRight:
             imageName = "TurnRight"
+        case .Start:
+            imageName = "StartIcon"
+        case .End:
+            imageName = "EndIcon"
         case.Wait(_):
             imageName = "Timer"
         }
@@ -78,6 +82,11 @@ class CodeBlockCell: UITableViewCell {
         case .Stop:
             colorBackgroundView.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1.0)
             arrowView.image = UIImage(named: "RedTriangle")
+        case .Start:
+            colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
+            arrowView.image = UIImage(named: "GrayTriangle")
+        case .End:
+            colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
         case .Wait(_):
             colorBackgroundView.backgroundColor = UIColor(red: 0.945, green: 0.769, blue: 0.059, alpha: 1.0)
             arrowView.image = UIImage(named: "YellowTriangle")

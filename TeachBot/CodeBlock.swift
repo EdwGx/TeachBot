@@ -9,8 +9,8 @@
 import Foundation
 
 enum CodeBlock: CustomStringConvertible {
-    // case Start
-    // case End
+    case Start
+    case End
     
     case Stop
     
@@ -34,6 +34,10 @@ enum CodeBlock: CustomStringConvertible {
             return "Turn Right"
         case .Stop:
             return "Stop"
+        case .Start:
+            return "Start"
+        case .End:
+            return "End"
         case .Wait(let interval):
             if interval == 0.0 {
                 return "Wait"
