@@ -14,6 +14,11 @@
 		961F61DE1D760A64004BE6C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DD1D760A64004BE6C6 /* Assets.xcassets */; };
 		961F61E11D760A64004BE6C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961F61DF1D760A64004BE6C6 /* LaunchScreen.storyboard */; };
 		961F61E91D760E6C004BE6C6 /* CodeBlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */; };
+		9622C4D61D78CF21006F2A73 /* D11.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9622C4D21D78CF21006F2A73 /* D11.aiff */; };
+		9622C4D71D78CF21006F2A73 /* D12.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9622C4D31D78CF21006F2A73 /* D12.aiff */; };
+		9622C4D81D78CF21006F2A73 /* D21.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9622C4D41D78CF21006F2A73 /* D21.aiff */; };
+		9622C4D91D78CF21006F2A73 /* D22.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9622C4D51D78CF21006F2A73 /* D22.aiff */; };
+		9622C4DC1D78D12F006F2A73 /* TBBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9622C4DB1D78D12F006F2A73 /* TBBot.swift */; };
 		96C440861D76E3C60041FEB9 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C440851D76E3C60041FEB9 /* CodeBlock.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +33,11 @@
 		961F61E01D760A64004BE6C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961F61E21D760A64004BE6C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockCell.swift; sourceTree = "<group>"; };
+		9622C4D21D78CF21006F2A73 /* D11.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = D11.aiff; sourceTree = "<group>"; };
+		9622C4D31D78CF21006F2A73 /* D12.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = D12.aiff; sourceTree = "<group>"; };
+		9622C4D41D78CF21006F2A73 /* D21.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = D21.aiff; sourceTree = "<group>"; };
+		9622C4D51D78CF21006F2A73 /* D22.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = D22.aiff; sourceTree = "<group>"; };
+		9622C4DB1D78D12F006F2A73 /* TBBot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBBot.swift; sourceTree = "<group>"; };
 		96C440851D76E3C60041FEB9 /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		A6584B33E1C4C4C211102569 /* Pods-TeachBot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeachBot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeachBot/Pods-TeachBot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,12 +88,25 @@
 				961F61D81D760A64004BE6C6 /* MainViewController.swift */,
 				96C440851D76E3C60041FEB9 /* CodeBlock.swift */,
 				961F61E81D760E6C004BE6C6 /* CodeBlockCell.swift */,
+				9622C4DB1D78D12F006F2A73 /* TBBot.swift */,
 				961F61DA1D760A64004BE6C6 /* Main.storyboard */,
 				961F61DD1D760A64004BE6C6 /* Assets.xcassets */,
 				961F61DF1D760A64004BE6C6 /* LaunchScreen.storyboard */,
 				961F61E21D760A64004BE6C6 /* Info.plist */,
+				9622C4DA1D78CF36006F2A73 /* Audio */,
 			);
 			path = TeachBot;
+			sourceTree = "<group>";
+		};
+		9622C4DA1D78CF36006F2A73 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				9622C4D21D78CF21006F2A73 /* D11.aiff */,
+				9622C4D31D78CF21006F2A73 /* D12.aiff */,
+				9622C4D41D78CF21006F2A73 /* D21.aiff */,
+				9622C4D51D78CF21006F2A73 /* D22.aiff */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		C2E214064E22F00A50BF0BD3 /* Frameworks */ = {
@@ -156,8 +179,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9622C4D91D78CF21006F2A73 /* D22.aiff in Resources */,
 				961F61E11D760A64004BE6C6 /* LaunchScreen.storyboard in Resources */,
 				961F61DE1D760A64004BE6C6 /* Assets.xcassets in Resources */,
+				9622C4D61D78CF21006F2A73 /* D11.aiff in Resources */,
+				9622C4D81D78CF21006F2A73 /* D21.aiff in Resources */,
+				9622C4D71D78CF21006F2A73 /* D12.aiff in Resources */,
 				961F61DC1D760A64004BE6C6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C440861D76E3C60041FEB9 /* CodeBlock.swift in Sources */,
+				9622C4DC1D78D12F006F2A73 /* TBBot.swift in Sources */,
 				961F61E91D760E6C004BE6C6 /* CodeBlockCell.swift in Sources */,
 				961F61D91D760A64004BE6C6 /* MainViewController.swift in Sources */,
 				961F61D71D760A64004BE6C6 /* AppDelegate.swift in Sources */,
