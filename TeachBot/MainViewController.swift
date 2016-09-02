@@ -15,13 +15,15 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        codeBlocks = [CodeBlock.Forward,
+        codeBlocks = [CodeBlock.Start,
+                      CodeBlock.Forward,
                       CodeBlock.Wait(1.23),
                       CodeBlock.TurnLeft,
                       CodeBlock.Wait(2.3),
                       CodeBlock.TurnRight,
                       CodeBlock.Wait(1.0),
-                      CodeBlock.Stop]
+                      CodeBlock.Stop,
+                      CodeBlock.End]
         
         tableView.separatorStyle = .None
         tableView.allowsSelection = false
@@ -58,7 +60,7 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return (indexPath.row != (codeBlocks.count - 1))
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -74,12 +76,23 @@ class MainViewController: UITableViewController {
             }
         }
         
-        let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") { [unowned self] (_, path) in
-            self.codeBlocks.removeAtIndex(path.row)
-            tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Fade)
+        if (indexPath.row == 0) {
+            
+            return [insertAction]
+            
+        } else {
+            let deleteAction = UITableViewRowAction(style: .Destructive, title: "Delete") { [unowned self] (_, path) in
+                self.codeBlocks.removeAtIndex(path.row)
+                tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Fade)
+            }
+            
+            return [deleteAction, insertAction]
         }
         
-        return [deleteAction, insertAction]
+        
+        
+        
+        
     }
     
     @IBAction func runCode(sender: UIButton) {
