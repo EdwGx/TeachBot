@@ -84,9 +84,10 @@ class CodeBlockCell: UITableViewCell {
             arrowView.image = UIImage(named: "RedTriangle")
         case .Start:
             colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
-            arrowView.image = UIImage(named: "GrayTriangle")
+            arrowView.image = UIImage(named: "GreyTriangle")
         case .End:
             colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
+            arrowView.image = nil
         case .Wait(_):
             colorBackgroundView.backgroundColor = UIColor(red: 0.945, green: 0.769, blue: 0.059, alpha: 1.0)
             arrowView.image = UIImage(named: "YellowTriangle")
