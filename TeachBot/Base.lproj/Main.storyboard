@@ -100,6 +100,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="OLa-br-dWi">
                             <connections>
                                 <action selector="runCode:" destination="qh6-MR-Dow" id="rqX-vx-7OK"/>
+                                <segue destination="bgr-qk-hOB" kind="show" id="KYS-vE-83u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,6 +108,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Q3-Tg-7tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="388" y="443"/>
+        </scene>
+        <!--Runtime View Controller-->
+        <scene sceneID="OlS-gj-Tmb">
+            <objects>
+                <viewController id="bgr-qk-hOB" customClass="RuntimeViewController" customModule="TeachBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QtZ-eM-zgP"/>
+                        <viewControllerLayoutGuide type="bottom" id="oId-cZ-LvB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9XJ-fT-OKm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wi-JY-mpD">
+                                <rect key="frame" x="20" y="64" width="560" height="201"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bn3-hR-6vu">
+                                <rect key="frame" x="284" y="285" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bn3-hR-6vu" firstAttribute="centerY" secondItem="9XJ-fT-OKm" secondAttribute="centerY" id="0qc-hT-aL5"/>
+                            <constraint firstItem="bn3-hR-6vu" firstAttribute="centerX" secondItem="9XJ-fT-OKm" secondAttribute="centerX" id="499-sC-vQc"/>
+                            <constraint firstItem="bn3-hR-6vu" firstAttribute="top" secondItem="0wi-JY-mpD" secondAttribute="bottom" constant="20" id="5rw-V3-Cn6"/>
+                            <constraint firstItem="0wi-JY-mpD" firstAttribute="leading" secondItem="9XJ-fT-OKm" secondAttribute="leadingMargin" id="7MH-mv-05g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0wi-JY-mpD" secondAttribute="trailing" id="fgd-Ut-ILH"/>
+                            <constraint firstItem="0wi-JY-mpD" firstAttribute="top" secondItem="QtZ-eM-zgP" secondAttribute="bottom" id="qUj-dO-PXE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="displayTextView" destination="0wi-JY-mpD" id="rHb-et-NZE"/>
+                        <outlet property="stopButton" destination="bn3-hR-6vu" id="mAq-lf-3YJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nI-jp-r9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1165" y="443"/>
         </scene>
     </scenes>
     <resources>
