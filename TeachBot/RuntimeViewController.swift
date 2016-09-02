@@ -13,6 +13,7 @@ class RuntimeViewController: UIViewController, TBBotDelegate {
     @IBOutlet weak var displayTextView: UITextView!
     @IBOutlet weak var stopButton: UIButton!
     
+    var codeBlocks: CodeBlock?
     var bot: TBBot?
     
     override func viewDidLoad() {
