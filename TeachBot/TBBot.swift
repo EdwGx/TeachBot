@@ -28,8 +28,9 @@ enum TBMotionDirection: Int, CustomStringConvertible {
 }
 
 protocol TBBotDelegate {
-    func bot(bot: TBBot, print string: String)
-    func bot(bot: TBBot, directionHasChanged direction: TBMotionDirection )
+    func bot(print string: String)
+    func bot(directionHasChanged direction: TBMotionDirection)
+    func botFinishedCode()
 }
 
 class TBBot : NSObject, AVAudioPlayerDelegate {
@@ -40,8 +41,14 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
     
     var delegate: TBBotDelegate?
     
-    override init() {
+    var codeBlocks: [CodeBlock]
+    var currentCodeBlock = CodeBlock.Start
+    
+     init(codeBlcoks blocks: [CodeBlock]) {
+        codeBlocks = blocks.reverse()
+        
         super.init()
+        
         do {
             _audioPlayers[.Forward] = try audioPlayerForFile("D21")
             _audioPlayers[.Backward] = try audioPlayerForFile("D12")
@@ -52,19 +59,59 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
+    func execute() {
+        if let nextBlock = codeBlocks.popLast() {
+            switch nextBlock {
+            case .Start:
+                execute()
+                
+            case .End:
+                reset()
+                delegate?.botFinishedCode()
+                
+            case .Forward:
+                update(direction: .Forward)
+                execute()
+                
+            case .Backward:
+                update(direction: .Backward)
+                execute()
+                
+            case .TurnLeft:
+                update(direction: .TurnLeft)
+                execute()
+                
+            case .TurnRight:
+                update(direction: .TurnRight)
+                execute()
+                
+            case .Stop:
+                update(direction: .Stop)
+                execute()
+                
+            case .Wait(let intereval):
+                delegate?.bot(print: NSString(format: "Wait %.1f s", intereval) as String)
+                NSThread.sleepForTimeInterval(intereval)
+                execute()
+            }
+        } else {
+            delegate?.botFinishedCode()
+        }
+    }
+    
     private func audioPlayerForFile(filename: String) throws  -> AVAudioPlayer {
         let audioPlayer = try AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource(filename, withExtension: "aiff")!)
         audioPlayer.numberOfLoops = -1
         return audioPlayer
     }
     
-    func update(direction direction: TBMotionDirection) {
+    private func update(direction direction: TBMotionDirection) {
         if direction != _direction {
             _direction = direction
         } else {
             return
         }
-        delegate?.bot(self, directionHasChanged: _direction)
+        delegate?.bot(directionHasChanged: _direction)
         
         if _currentAudioPlayer != nil {
             let audioPlayer = _currentAudioPlayer!
@@ -79,13 +126,10 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    func reset(){
+    private func reset(){
         _direction = .Stop
         _currentAudioPlayer?.stop()
         _currentAudioPlayer = nil
     }
     
-    func display(string string: String){
-        delegate?.bot(self, print: string)
-    }
 }

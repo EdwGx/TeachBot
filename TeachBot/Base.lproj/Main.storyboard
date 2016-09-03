@@ -100,10 +100,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="OLa-br-dWi">
                             <connections>
                                 <action selector="runCode:" destination="qh6-MR-Dow" id="rqX-vx-7OK"/>
-                                <segue destination="bgr-qk-hOB" kind="showDetail" identifier="runCode" action="showViewController:sender:" id="KYS-vE-83u"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="bgr-qk-hOB" kind="showDetail" identifier="runCode" id="UrF-Dw-1A5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Q3-Tg-7tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,6 +132,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bn3-hR-6vu">
                                 <rect key="frame" x="284" y="285" width="32" height="30"/>
                                 <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stop:" destination="bgr-qk-hOB" eventType="touchUpInside" id="c1a-Pz-dri"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,7 +150,7 @@
                     <connections>
                         <outlet property="displayTextView" destination="0wi-JY-mpD" id="rHb-et-NZE"/>
                         <outlet property="stopButton" destination="bn3-hR-6vu" id="mAq-lf-3YJ"/>
-                        <segue destination="1Ir-TM-Yei" kind="unwind" identifier="finishedScript" unwindAction="unwindToProgramming:" id="3vg-qD-EGz"/>
+                        <segue destination="1Ir-TM-Yei" kind="unwind" identifier="finishCode" unwindAction="unwindToProgramming:" id="3vg-qD-EGz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5nI-jp-r9o" userLabel="First Responder" sceneMemberID="firstResponder"/>

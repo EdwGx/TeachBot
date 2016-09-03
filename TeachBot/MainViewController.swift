@@ -93,14 +93,19 @@ class MainViewController: UITableViewController {
             return [deleteAction, insertAction]
         }
         
-        
-        
-        
-        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "runCode" {
+            let controller = segue.destinationViewController as! RuntimeViewController
+            controller.codeBlocks = self.codeBlocks
+        }
     }
     
     @IBAction func runCode(sender: UIButton) {
         print(codeBlocks)
+        
+        performSegueWithIdentifier("runCode", sender: self)
     }
     
     func chooseCodeBlock(handler: (block: CodeBlock?) -> ()) {

@@ -47,6 +47,20 @@ enum CodeBlock: CustomStringConvertible {
         }
     }
     
+    func isWait() -> Bool {
+        switch self {
+        case .Wait(_): return true
+        default: return false
+        }
+    }
+    
+    func isMotion() -> Bool {
+        switch self {
+        case .Forward, .Backward, .TurnLeft, .TurnRight, .Stop: return true
+        default: return false
+        }
+    }
+    
     static var allEditableCodeBlocks: [CodeBlock] {
         return [.Forward, .Backward, .TurnLeft, .TurnRight, Wait(0.0), .Stop]
     }
