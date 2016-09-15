@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import AVFoundation
+import AudioKit
 
 enum TBMotionDirection: Int, CustomStringConvertible {
     case Stop
@@ -27,7 +27,7 @@ enum TBMotionDirection: Int, CustomStringConvertible {
     }
 }
 
-protocol TBBotDelegate {
+protocol TBBotDelegate: class {
     func bot(print string: String)
     func bot(directionHasChanged direction: TBMotionDirection)
     func botFinishedCode()
@@ -36,33 +36,44 @@ protocol TBBotDelegate {
 class TBBot : NSObject, AVAudioPlayerDelegate {
     private var _direction = TBMotionDirection.Stop
     
-    private var _audioPlayers = [TBMotionDirection:AVAudioPlayer]()
-    private var _currentAudioPlayer: AVAudioPlayer?
-    
-    var delegate: TBBotDelegate?
+    weak var delegate: TBBotDelegate?
     
     var codeBlocks: [CodeBlock]
     var currentCodeBlock = CodeBlock.Start
     
+    let leftOscillator: AKPWMOscillator
+    let rightOscillator: AKPWMOscillator
+    
+    let leftPanner: AKPanner
+    let rightPanner: AKPanner
+    
+    let masterMixer: AKMixer
+    
+    var playingAudio = false
+    
      init(codeBlcoks blocks: [CodeBlock]) {
         codeBlocks = blocks.reverse()
         
+        leftOscillator  = AKPWMOscillator(frequency: 50.0)
+        rightOscillator = AKPWMOscillator(frequency: 50.0)
+        
+        leftPanner  = AKPanner(leftOscillator,  pan: -1)
+        rightPanner = AKPanner(rightOscillator, pan:  1)
+        
+        masterMixer = AKMixer(leftPanner, rightPanner)
+        
         super.init()
         
-        do {
-            _audioPlayers[.Forward] = try audioPlayerForFile("D21")
-            _audioPlayers[.Backward] = try audioPlayerForFile("D12")
-            _audioPlayers[.TurnLeft] = try audioPlayerForFile("D11")
-            _audioPlayers[.TurnRight] = try audioPlayerForFile("D22")
-        } catch {
-            NSLog("Error: \(error)")
-        }
+        self.stopNodes()
     }
     
     func execute() {
         if let nextBlock = codeBlocks.popLast() {
             switch nextBlock {
             case .Start:
+                AudioKit.output = masterMixer
+                AudioKit.start()
+                
                 execute()
                 
             case .End:
@@ -99,12 +110,6 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    private func audioPlayerForFile(filename: String) throws  -> AVAudioPlayer {
-        let audioPlayer = try AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource(filename, withExtension: "aiff")!)
-        audioPlayer.numberOfLoops = -1
-        return audioPlayer
-    }
-    
     private func update(direction direction: TBMotionDirection) {
         if direction != _direction {
             _direction = direction
@@ -113,23 +118,65 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
         delegate?.bot(directionHasChanged: _direction)
         
-        if _currentAudioPlayer != nil {
-            let audioPlayer = _currentAudioPlayer!
-            audioPlayer.stop()
-            _currentAudioPlayer = nil
-        }
         
-        if direction != .Stop {
-            let audioPlayer = _audioPlayers[direction]!
-            _currentAudioPlayer = audioPlayer
-             audioPlayer.play()
+        switch direction {
+        case .Forward:
+            startNodes()
+            leftOscillator.pulseWidth = 0.3
+            rightOscillator.pulseWidth = 0.7
+        case .Backward:
+            startNodes()
+            leftOscillator.pulseWidth = 0.7
+            rightOscillator.pulseWidth = 0.3
+        case .TurnLeft:
+            startNodes()
+            leftOscillator.pulseWidth = 0.7
+            rightOscillator.pulseWidth = 0.7
+        case .TurnRight:
+            startNodes()
+            leftOscillator.pulseWidth = 0.3
+            rightOscillator.pulseWidth = 0.3
+        case .Stop:
+            stopNodes()
         }
     }
     
-    private func reset(){
+    private func startNodes() {
+        if !playingAudio {
+            playingAudio = true
+            
+            leftOscillator.start()
+            rightOscillator.start()
+            
+            leftPanner.start()
+            rightPanner.start()
+            
+            masterMixer.start()
+        }
+    }
+    
+    private func stopNodes() {
+        if playingAudio {
+            playingAudio = false
+            
+            leftOscillator.stop()
+            rightOscillator.stop()
+            
+            leftPanner.stop()
+            rightPanner.stop()
+            
+            masterMixer.stop()
+        }
+    }
+    
+    private func reset() {
         _direction = .Stop
-        _currentAudioPlayer?.stop()
-        _currentAudioPlayer = nil
+        stopNodes()
+    }
+    
+    deinit {
+        AudioKit.engine.stop()
+        AudioKit.engine.detachNode(masterMixer.avAudioNode)
     }
     
 }
