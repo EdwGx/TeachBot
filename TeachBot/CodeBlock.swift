@@ -42,7 +42,7 @@ enum CodeBlock: CustomStringConvertible {
             if interval == 0.0 {
                 return "Wait"
             } else {
-                return NSString(format: "Wait %.1f s", interval) as String
+                return NSString(format: "Wait %.2f s", interval) as String
             }
         }
     }

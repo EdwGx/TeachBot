@@ -90,7 +90,7 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
                 execute()
                 
             case .Wait(let intereval):
-                delegate?.bot(print: NSString(format: "Wait %.1f s", intereval) as String)
+                delegate?.bot(print: NSString(format: "Wait %.2f s", intereval) as String)
                 NSThread.sleepForTimeInterval(intereval)
                 execute()
             }
