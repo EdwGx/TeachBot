@@ -74,11 +74,25 @@ class MainViewController: UITableViewController {
                 if block != nil {
                     let newIndexPath = NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.insertCodeBlock(block!, at: newIndexPath)
+                        self.insertCodeBlock(block!, at: newIndexPath, replace: false)
+                        self.tableView.setEditing(false, animated: true)
                     });
                 }
             }
         }
+        insertAction.backgroundColor = UIColor.blueColor()
+        
+        let replaceAction = UITableViewRowAction(style: .Normal, title: "Edit") { [unowned self] (_, _) in
+            self.chooseCodeBlock() { (block) in
+                if block != nil {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.insertCodeBlock(block!, at: indexPath, replace: true)
+                        self.tableView.setEditing(false, animated: true)
+                    });
+                }
+            }
+        }
+        
         
         if (indexPath.row == 0) {
             
@@ -90,7 +104,7 @@ class MainViewController: UITableViewController {
                 tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Fade)
             }
             
-            return [deleteAction, insertAction]
+            return [deleteAction, insertAction, replaceAction]
         }
         
     }
@@ -130,7 +144,7 @@ class MainViewController: UITableViewController {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func insertCodeBlock(block: CodeBlock, at indexPath: NSIndexPath) {
+    func insertCodeBlock(block: CodeBlock, at indexPath: NSIndexPath, replace: Bool) {
         switch block {
         case .Wait(_):
             let alertController = UIAlertController(title: "Wait Interval", message: "Time in seconds before next command to be executed, robot will remain running during a wait.", preferredStyle: .Alert)
@@ -149,8 +163,13 @@ class MainViewController: UITableViewController {
                         if interval > 0.0 {
                             let newBlock = CodeBlock.Wait(interval)
                             
-                            self.codeBlocks.insert(newBlock, atIndex: indexPath.row)
-                            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                            if replace {
+                                self.codeBlocks[indexPath.row] = newBlock
+                                (self.tableView.cellForRowAtIndexPath(indexPath) as! CodeBlockCell).codeBlock = newBlock
+                            } else {
+                                self.codeBlocks.insert(newBlock, atIndex: indexPath.row)
+                                self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                            }
                             
                         }
                     }
@@ -162,8 +181,15 @@ class MainViewController: UITableViewController {
             
             presentViewController(alertController, animated: true, completion: nil)
         default:
-            codeBlocks.insert(block, atIndex: indexPath.row)
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            if replace {
+                codeBlocks[indexPath.row] = block
+                (tableView.cellForRowAtIndexPath(indexPath) as! CodeBlockCell).codeBlock = block
+            } else {
+                codeBlocks.insert(block, atIndex: indexPath.row)
+                tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+            
         }
     }
 
