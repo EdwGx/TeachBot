@@ -16,7 +16,7 @@ class RuntimeViewController: UIViewController, TBBotDelegate {
     var codeBlocks: [CodeBlock]?
     var bot: TBBot?
     
-    let queue = NSOperationQueue()
+    let queue = OperationQueue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +25,14 @@ class RuntimeViewController: UIViewController, TBBotDelegate {
         bot = TBBot(codeBlcoks: codeBlocks!)
         bot!.delegate = self
         
-        queue.qualityOfService = .UserInitiated
+        queue.qualityOfService = .userInitiated
         queue.name = "TBBot-Queue"
         queue.maxConcurrentOperationCount = 1
         
-        self.stopButton.enabled = false
+        self.stopButton.isEnabled = false
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let operation = TBBotExecutionOperation()
@@ -57,24 +57,24 @@ class RuntimeViewController: UIViewController, TBBotDelegate {
     func botFinishedCode() {
         appendTextToDisplay("Finished code", tag: "Exit")
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.stopButton.setTitle("Done", forState: .Normal)
-            self.stopButton.enabled = true
+        DispatchQueue.main.async {
+            self.stopButton.setTitle("Done", for: UIControlState())
+            self.stopButton.isEnabled = true
         }
     }
     
-    func appendTextToDisplay(string: String, tag: String) {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+    func appendTextToDisplay(_ string: String, tag: String) {
+        DispatchQueue.main.async { () -> Void in
             self.displayTextView.text = "[\(tag)]\(string)\n" + self.displayTextView.text
         }
     }
     
-    @IBAction func stop(sender: UIButton) {
-        performSegueWithIdentifier("finishCode", sender: self)
+    @IBAction func stop(_ sender: UIButton) {
+        performSegue(withIdentifier: "finishCode", sender: self)
     }
 }
 
-class TBBotExecutionOperation: NSOperation {
+class TBBotExecutionOperation: Operation {
     var bot: TBBot?
     
     override func main () {

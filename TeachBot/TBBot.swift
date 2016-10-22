@@ -10,19 +10,19 @@ import Foundation
 import AudioKit
 
 enum TBMotionDirection: Int, CustomStringConvertible {
-    case Stop
-    case Forward
-    case Backward
-    case TurnLeft
-    case TurnRight
+    case stop
+    case forward
+    case backward
+    case turnLeft
+    case turnRight
     
     var description: String {
         switch self {
-        case .Stop: return "Stop";
-        case .Forward: return "Forward";
-        case .Backward: return "Backward";
-        case .TurnLeft: return "TurnLeft";
-        case .TurnRight: return "TurnRight";
+        case .stop: return "Stop";
+        case .forward: return "Forward";
+        case .backward: return "Backward";
+        case .turnLeft: return "TurnLeft";
+        case .turnRight: return "TurnRight";
         }
     }
 }
@@ -34,12 +34,12 @@ protocol TBBotDelegate: class {
 }
 
 class TBBot : NSObject, AVAudioPlayerDelegate {
-    private var _direction = TBMotionDirection.Stop
+    fileprivate var _direction = TBMotionDirection.stop
     
     weak var delegate: TBBotDelegate?
     
     var codeBlocks: [CodeBlock]
-    var currentCodeBlock = CodeBlock.Start
+    var currentCodeBlock = CodeBlock.start
     
     let leftOscillator: AKPWMOscillator
     let rightOscillator: AKPWMOscillator
@@ -52,7 +52,7 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
     var playingAudio = false
     
      init(codeBlcoks blocks: [CodeBlock]) {
-        codeBlocks = blocks.reverse()
+        codeBlocks = blocks.reversed()
         
         leftOscillator  = AKPWMOscillator(frequency: 50.0)
         rightOscillator = AKPWMOscillator(frequency: 50.0)
@@ -70,39 +70,39 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
     func execute() {
         if let nextBlock = codeBlocks.popLast() {
             switch nextBlock {
-            case .Start:
+            case .start:
                 AudioKit.output = masterMixer
                 AudioKit.start()
                 
                 execute()
                 
-            case .End:
+            case .end:
                 reset()
                 delegate?.botFinishedCode()
                 
-            case .Forward:
-                update(direction: .Forward)
+            case .forward:
+                update(.forward)
                 execute()
                 
-            case .Backward:
-                update(direction: .Backward)
+            case .backward:
+                update(.backward)
                 execute()
                 
-            case .TurnLeft:
-                update(direction: .TurnLeft)
+            case .turnLeft:
+                update(.turnLeft)
                 execute()
                 
-            case .TurnRight:
-                update(direction: .TurnRight)
+            case .turnRight:
+                update(.turnRight)
                 execute()
                 
-            case .Stop:
-                update(direction: .Stop)
+            case .stop:
+                update(.stop)
                 execute()
                 
-            case .Wait(let intereval):
+            case .wait(let intereval):
                 delegate?.bot(print: NSString(format: "Wait %.2f s", intereval) as String)
-                NSThread.sleepForTimeInterval(intereval)
+                Thread.sleep(forTimeInterval: intereval)
                 execute()
             }
         } else {
@@ -110,7 +110,7 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    private func update(direction direction: TBMotionDirection) {
+    fileprivate func update(_ direction: TBMotionDirection) {
         if direction != _direction {
             _direction = direction
         } else {
@@ -120,28 +120,28 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         
         
         switch direction {
-        case .Forward:
+        case .forward:
             startNodes()
             leftOscillator.pulseWidth = 0.3
             rightOscillator.pulseWidth = 0.7
-        case .Backward:
+        case .backward:
             startNodes()
             leftOscillator.pulseWidth = 0.7
             rightOscillator.pulseWidth = 0.3
-        case .TurnLeft:
+        case .turnLeft:
             startNodes()
             leftOscillator.pulseWidth = 0.7
             rightOscillator.pulseWidth = 0.7
-        case .TurnRight:
+        case .turnRight:
             startNodes()
             leftOscillator.pulseWidth = 0.3
             rightOscillator.pulseWidth = 0.3
-        case .Stop:
+        case .stop:
             stopNodes()
         }
     }
     
-    private func startNodes() {
+    fileprivate func startNodes() {
         if !playingAudio {
             playingAudio = true
             
@@ -155,7 +155,7 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    private func stopNodes() {
+    fileprivate func stopNodes() {
         if playingAudio {
             playingAudio = false
             
@@ -169,14 +169,14 @@ class TBBot : NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    private func reset() {
-        _direction = .Stop
+    fileprivate func reset() {
+        _direction = .stop
         stopNodes()
     }
     
     deinit {
         AudioKit.engine.stop()
-        AudioKit.engine.detachNode(masterMixer.avAudioNode)
+        AudioKit.engine.detach(masterMixer.avAudioNode)
     }
     
 }

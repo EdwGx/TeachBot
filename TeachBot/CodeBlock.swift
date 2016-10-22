@@ -9,36 +9,36 @@
 import Foundation
 
 enum CodeBlock: CustomStringConvertible {
-    case Start
-    case End
+    case start
+    case end
     
-    case Stop
+    case stop
     
-    case Forward
-    case Backward
+    case forward
+    case backward
     
-    case TurnLeft
-    case TurnRight
+    case turnLeft
+    case turnRight
     
-    case Wait(Double)
+    case wait(Double)
     
     var description: String {
         switch self {
-        case .Forward:
+        case .forward:
             return "Forward"
-        case .Backward:
+        case .backward:
             return "Backward"
-        case .TurnLeft:
+        case .turnLeft:
             return "Turn Left"
-        case .TurnRight:
+        case .turnRight:
             return "Turn Right"
-        case .Stop:
+        case .stop:
             return "Stop"
-        case .Start:
+        case .start:
             return "Start"
-        case .End:
+        case .end:
             return "End"
-        case .Wait(let interval):
+        case .wait(let interval):
             if interval == 0.0 {
                 return "Wait"
             } else {
@@ -49,19 +49,19 @@ enum CodeBlock: CustomStringConvertible {
     
     func isWait() -> Bool {
         switch self {
-        case .Wait(_): return true
+        case .wait(_): return true
         default: return false
         }
     }
     
     func isMotion() -> Bool {
         switch self {
-        case .Forward, .Backward, .TurnLeft, .TurnRight, .Stop: return true
+        case .forward, .backward, .turnLeft, .turnRight, .stop: return true
         default: return false
         }
     }
     
     static var allEditableCodeBlocks: [CodeBlock] {
-        return [.Forward, .Backward, .TurnLeft, .TurnRight, Wait(0.0), .Stop]
+        return [.forward, .backward, .turnLeft, .turnRight, wait(0.0), .stop]
     }
 }

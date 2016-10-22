@@ -31,13 +31,13 @@ class CodeBlockCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func insertCodeBlockBelow(sender: UIButton) {
+    @IBAction func insertCodeBlockBelow(_ sender: UIButton) {
         
     }
     
@@ -49,21 +49,21 @@ class CodeBlockCell: UITableViewCell {
         let imageName: String
         
         switch codeBlock! {
-        case .Stop:
+        case .stop:
             imageName = "Stop"
-        case .Forward:
+        case .forward:
             imageName = "Forward"
-        case .Backward:
+        case .backward:
             imageName = "Backward"
-        case .TurnLeft:
+        case .turnLeft:
             imageName = "TurnLeft"
-        case .TurnRight:
+        case .turnRight:
             imageName = "TurnRight"
-        case .Start:
+        case .start:
             imageName = "StartIcon"
-        case .End:
+        case .end:
             imageName = "EndIcon"
-        case.Wait(_):
+        case.wait(_):
             imageName = "Timer"
         }
         
@@ -73,22 +73,22 @@ class CodeBlockCell: UITableViewCell {
     func configureColor() {
         
         switch codeBlock! {
-        case .Forward, .Backward:
+        case .forward, .backward:
             colorBackgroundView.backgroundColor = UIColor(red: 0.18, green: 0.8, blue: 0.443, alpha: 1.0)
             arrowView.image = UIImage(named: "GreenTriangle")
-        case .TurnLeft, .TurnRight:
+        case .turnLeft, .turnRight:
             colorBackgroundView.backgroundColor = UIColor(red: 0.102, green: 0.737, blue: 0.612, alpha: 1.0)
             arrowView.image = UIImage(named: "TurquoiseTriangle")
-        case .Stop:
+        case .stop:
             colorBackgroundView.backgroundColor = UIColor(red: 0.906, green: 0.298, blue: 0.235, alpha: 1.0)
             arrowView.image = UIImage(named: "RedTriangle")
-        case .Start:
+        case .start:
             colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
             arrowView.image = UIImage(named: "GreyTriangle")
-        case .End:
+        case .end:
             colorBackgroundView.backgroundColor = UIColor(red:0.58, green:0.65, blue:0.65, alpha:1.0)
             arrowView.image = nil
-        case .Wait(_):
+        case .wait(_):
             colorBackgroundView.backgroundColor = UIColor(red: 0.945, green: 0.769, blue: 0.059, alpha: 1.0)
             arrowView.image = UIImage(named: "YellowTriangle")
         }

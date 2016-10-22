@@ -4,6 +4,6 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'TeachBot' do
-    pod 'AudioKit', '~> 3.3'
+    pod 'AudioKit', '~> 3.4.1'
 end
 
